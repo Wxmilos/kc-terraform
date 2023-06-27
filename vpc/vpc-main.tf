@@ -7,12 +7,6 @@ terraform {
   }
 }
 
-provider "huaweicloud" {
-  # Configuration options
-  region     = "ap-southeast-1"
-  access_key = "EAHTDX64QDUG8LH7J5T5"
-  secret_key = "i6cledVnWLxJXLeIyBUGvvDAdFIYyoZD0CUZ9GKb"
-}
 
 resource "huaweicloud_vpc" "vpc_1" {
   name = var.vpc_name
