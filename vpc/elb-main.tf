@@ -66,6 +66,7 @@ resource "huaweicloud_elb_loadbalancer" "default" {
     "ap-southeast-1c",
   ]
   ipv4_eip_id = huaweicloud_vpc_eip.dedicated_elb.id
+  charging_mode = "postPaid"
   tags = {
     owner = "terraform"
   }
@@ -96,10 +97,6 @@ resource "huaweicloud_elb_listener" "default_4" {
   protocol_port   = 8000
   loadbalancer_id = huaweicloud_elb_loadbalancer.default.id
 
-  idle_timeout     = 60
-  request_timeout  = 60
-  response_timeout = 60
-
   tags = {
     owner = "terraform"
   }
@@ -120,10 +117,6 @@ resource "huaweicloud_elb_pool" "default_4" {
   protocol    = "TCP"
   lb_method   = "ROUND_ROBIN"
   listener_id = huaweicloud_elb_listener.default_4.id
-
-  persistence {
-    type = "HTTP_COOKIE"
-  }
 }
 #后端服务器组
 resource "huaweicloud_elb_monitor" "default_7" {
